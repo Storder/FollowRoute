@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/mapsFragment"
+    android:id="@+id/navigation">
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.diktapk.followroute.ui.MapsFragment"
+        android:label="maps"
+        tools:layout="@layout/fragment_maps">
+        <!--action
+            android:id="@+id/action_mapsFragment_to_"
+            app:destination="@id/"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"/-->
+    </fragment>
+</navigation>

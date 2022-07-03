@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "603433580363",
+    "project_id": "routefollow",
+    "storage_bucket": "routefollow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603433580363:android:14c092e6e13d42b5279ace",
+        "android_client_info": {
+          "package_name": "com.diktapk.followroute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603433580363-94jmr8081m6c8q6d3gvegj64ibm6c27v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diktapk.followroute",
+            "certificate_hash": "b183d1fbb02d7392bb3741001da9fde479066ee7"
+          }
+        },
+        {
+          "client_id": "603433580363-u1e8u83lgca1mmhn2q60dh7usbf4crtg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ3KNl3jetF1sRQTQaHcLtQs-ukCzL_Xc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603433580363-u1e8u83lgca1mmhn2q60dh7usbf4crtg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
