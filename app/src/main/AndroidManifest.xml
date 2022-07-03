@@ -25,7 +25,7 @@
 
 
         <service android:name=".model.service.UploadLocationService"
-            android:foregroundServiceType="dataSync"/>
+            android:foregroundServiceType="location"/>
 
         <service
             android:name=".model.location.ManagerLocation"
