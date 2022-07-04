@@ -24,6 +24,9 @@
         android:theme="@style/Theme.FollowRoute">
 
 
+        <service android:name=".model.service.UploadLocationService"
+            android:foregroundServiceType="location"/>
+
         <service
             android:name=".model.location.ManagerLocation"
             android:foregroundServiceType="location"/>
