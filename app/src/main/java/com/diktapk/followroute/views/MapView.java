@@ -12,6 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentManager;
 
 
+import com.diktapk.followroute.model.clases.Direcciones;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import at.bluesource.choicesdk.maps.common.CameraUpdate;
 import at.bluesource.choicesdk.maps.common.CameraUpdateFactory;
 import at.bluesource.choicesdk.maps.common.LatLng;
@@ -20,6 +26,7 @@ import at.bluesource.choicesdk.maps.common.MapFragment;
 import at.bluesource.choicesdk.maps.common.Marker;
 import at.bluesource.choicesdk.maps.common.UiSettings;
 import at.bluesource.choicesdk.maps.common.options.MarkerOptions;
+import at.bluesource.choicesdk.maps.common.shape.PolylineOptions;
 import io.reactivex.rxjava3.observers.DisposableObserver;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,6 +44,7 @@ public class MapView extends FrameLayout {
     private OnMap onMap;
     @Setter
     private Marker marker;
+    private List<Marker> markers;
 
 
     public MapView(@NonNull Context context) {
@@ -112,6 +120,38 @@ public class MapView extends FrameLayout {
 
         this.marker = null;
         return null;
+    }
+
+    public void addMultiMarkerFromDirecciones(List<Direcciones> direcciones){
+        markers = new ArrayList<>();
+        for(Direcciones direccion: direcciones){
+            LatLng latlng = new LatLng(direccion.getLatitude(),direccion.getLongitude());
+            markers.add(
+                    map.addMarker(
+                        MarkerOptions.Factory.create()
+                            .defaultIcon()
+                            .position(latlng)
+                    )
+            );
+        }
+    }
+
+    public void addLines(List<Direcciones> locations){
+        addLine(locations.stream()
+                .map(direcciones -> new LatLng(direcciones.getLatitude(),direcciones.getLongitude()))
+                .collect(Collectors.toList()));
+    }
+
+    public void addLine(List<LatLng> locations){
+        map.addPolyline(
+                new PolylineOptions()
+                        .addAll(locations)
+                        .width(15f)
+                        .color(Color.RED)
+                        //.startCap(Cap.RoundCap())
+                        //.endCap(Cap.SquareCap())
+                        .zIndex(2f)
+        );
     }
 
 

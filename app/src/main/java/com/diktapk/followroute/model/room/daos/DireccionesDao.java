@@ -1,5 +1,7 @@
 package com.diktapk.followroute.model.room.daos;
 
+import static androidx.room.OnConflictStrategy.REPLACE;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -18,7 +20,10 @@ public interface DireccionesDao {
     Single<List<Direcciones>> getAll();
 
     @Insert
-    void insertAll(Direcciones... direccioness);
+    Single<List<Long>> insertAll(Direcciones... direccioness);
+
+    @Insert(onConflict = REPLACE)
+    Single<Long> insert(Direcciones direccion);
 
     @Delete
     void delete(Direcciones direcciones);

@@ -20,12 +20,21 @@ import com.diktapk.followroute.model.clases.Direcciones;
 import com.diktapk.followroute.model.location.ManagerLocation;
 import com.diktapk.followroute.model.room.Repository;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Scheduler;
 import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.observers.DisposableCompletableObserver;
+import io.reactivex.rxjava3.observers.DisposableSingleObserver;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import io.vavr.control.Try;
 
 public class UploadLocationService extends Service {
 
     private static final String TAG = "UploadLocationService";
+    private CompositeDisposable disposable = new CompositeDisposable();
     // ya que este servicio accede a la ubicacion en el manifest declarar tipo de servicio location
     //si no es declarado la ubicacion va hacer null cada vez que se requiera consultar
 
@@ -83,11 +92,42 @@ public class UploadLocationService extends Service {
         return true;
     }
 
-    private Single<Boolean> saveDirections(Address address){
-        return Single.create(emitter -> {
-            Repository.getInstance().getDireccionesDao().insertAll(Direcciones.transfor(address));
-            emitter.onSuccess(Boolean.TRUE);
-        });
+    private Boolean saveDirections(Address address){
+
+        /*disposable.add(Completable.fromAction(() ->
+                    Repository.getInstance().getDireccionesDao().insertAll(Direcciones.transfor(address)))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableCompletableObserver() {
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, " se insertaron direcciones en db");
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, " error al insertaron direcciones en db "+e);
+                    }
+                })
+        );*/
+
+        disposable.add(Repository.getInstance().getDireccionesDao().insert(Direcciones.transfor(address))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribeWith(new DisposableSingleObserver<Long>() {
+                    @Override
+                    public void onSuccess(@NonNull Long aLong) {
+                        Log.d(TAG, " se insertaron direcciones en db id = "+aLong);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d(TAG, " error al insertaron direcciones en db "+e);
+                    }
+                })
+        );
+
+        return true;
     }
 
 
