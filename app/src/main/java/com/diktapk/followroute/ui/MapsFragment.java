@@ -98,19 +98,19 @@ public class MapsFragment extends Fragment  implements MapView.OnMap{
         });*/
 
 
-        ManagerLocation.getInstance().getLocation(location -> {
+        /*ManagerLocation.getInstance().getLocation(location -> {
             if(location != null){
                 binding.mapView.addMarker(location);
                 binding.mapView.moveCamera(location);
             }
-        });
+        });*/
 
         //UploadLocationWoker.initWork(requireContext());
         //UploadLocationWoker.infoWork(requireContext(),getViewLifecycleOwner());
 
 
 
-        requireActivity().startForegroundService(new Intent(requireContext(), UploadLocationService.class));
+        //requireActivity().startForegroundService(new Intent(requireContext(), UploadLocationService.class));
     }
 
 }

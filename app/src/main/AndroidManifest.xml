@@ -35,15 +35,11 @@
 
         <meta-data
             android:name="com.huawei.hms.client.appid"
-            android:value="appid=106564267" />
-
-        <!--meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${key}" /-->
+            android:value="${keyhms}" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBhlpkpsFXRJ5TArkw_7o7j0IsHoMF2org" />
+            android:value="${keymaps}" />
 
 
         <activity

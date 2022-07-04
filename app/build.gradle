@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'com.huawei.agconnect'
+    //leer variables de local.properties en manifest y codigo
+    id 'com.google.secrets_gradle_plugin' version '0.4'
 }
 
 android {
@@ -20,14 +22,16 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("/Users/lixvan/Documents/Androod_keys/FollowRoute.jks")
+            //storeFile file("/Users/lixvan/Documents/Androod_keys/FollowRoute.jks")
+            storeFile file("C:\\Users\\LixPc\\Documents\\Android Keys\\FollowRoute\\FollowRoute.jks")
             storePassword "TeAmoKaren123"
             keyAlias "key0"
             keyPassword "TeAmoKaren123"
             v2SigningEnabled true
         }
         config {
-            storeFile file("/Users/lixvan/Documents/Androod_keys/FollowRoute.jks")
+            //storeFile file("/Users/lixvan/Documents/Androod_keys/FollowRoute.jks")
+            storeFile file("C:\\Users\\LixPc\\Documents\\Android Keys\\FollowRoute\\FollowRoute.jks")
             storePassword 'TeAmoKaren123'
             keyPassword 'TeAmoKaren123'
             keyAlias 'key0'
